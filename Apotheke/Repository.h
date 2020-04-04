@@ -10,7 +10,14 @@ public:
 	// Add a medicine to the medicine list
 	void add_medikament(Medikament medikament);
 
-	// Returns the list with medicines
+    // Deletes a medicine from the medicine list
+    void delete_medikament(Medikament medikament);
+
+    // Edits a medicine from the medicine list
+    void edit_medikament(Medikament medikament, string name, double konz, double meng, double preis);
+
+
+    // Returns the list with medicines
 	std::vector<Medikament> getMedikamente() const;
 
 	// Returns a medicine from a given index

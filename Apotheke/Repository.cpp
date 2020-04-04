@@ -1,5 +1,6 @@
 #include "Repository.h"
 #include <algorithm>
+using namespace std;
 
 void Repository::add_medikament(Medikament _medikament) {
 	bool found = false;
@@ -11,6 +12,24 @@ void Repository::add_medikament(Medikament _medikament) {
 		}
 	if (found == false)
 		medikamente.push_back(_medikament);
+}
+
+void Repository::delete_medikament(Medikament _medikament) {
+    for(int i = 0; i < medikamente.size(); ++i) {
+        if (medikamente[i] == _medikament) {
+            medikamente.erase(medikamente.begin()+i);
+        }
+    }
+}
+
+void Repository::edit_medikament(Medikament _medikament,string name, double konz, double meng, double preis) {
+    for (std::size_t i = 0; i < medikamente.size(); ++i)
+        if (medikamente[i] == _medikament) {
+            medikamente[i].setName(name);
+            medikamente[i].setKonzentration(konz);
+            medikamente[i].setMenge(meng);
+            medikamente[i].setPreis(preis);
+        }
 }
 
 
