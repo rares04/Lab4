@@ -9,6 +9,8 @@ ApothekeUI::ApothekeUI(Controller _ctrl) : ctrl(_ctrl){
 
 
 void Infos() {
+	// Infos uber die mogliche Operationen
+
 	cout << "\n\n";
 	cout << "0. Fur Exit\n";
 	cout << "1. Fur Einfugen Medikament\n";
@@ -23,6 +25,8 @@ void Infos() {
 
 
 void ApothekeUI::UI() {
+	// Es gibt 9 mogliche Operationen, also 9 if statements, in jeder if statement wird eine Operation gemacht
+
 	Infos();
 	int input;
 	string name, new_name, zeichen;
@@ -90,7 +94,5 @@ void ApothekeUI::UI() {
 
 		Infos();
 		cout << "\nInput: "; cin >> input;
-
-		ctrl.printRepo();
 	}
 }

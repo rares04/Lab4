@@ -8,12 +8,12 @@ void Repository::add_medikament(Medikament _medikament) {
 //    lastAndNew.insert(lastAndNew.begin(), _medikament);
     bool found = false;
     for (std::size_t i = 0; i < medikamente.size(); ++i)
-        if (medikamente[i] == _medikament) {
+        if (medikamente[i] == _medikament) {   // Wenn dieses Medikament schon existiert, dann wird nur die Menge vergrossert
             medikamente[i].setMenge(medikamente[i].getMenge() + _medikament.getMenge());
             found = true;
             break;
         }
-    if (found == false)
+    if (found == false)  // Wenn dieses Medikament nicht existiert, wird am Ende des Vektors eingefugt
         medikamente.push_back(_medikament);
 }
 
