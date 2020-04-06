@@ -22,7 +22,7 @@ void Repository::delete_medikament(Medikament _medikament) {
     lastMedicament = _medikament;
 //    lastAndNew.insert(lastAndNew.begin(), _medikament);
     for(int i = 0; i < medikamente.size(); ++i) {
-        if (medikamente[i] == _medikament && _medikament.getMenge() == 1) {
+        if (medikamente[i] == _medikament && _medikament.getMenge() == 1 || medikamente[i].getMenge() - _medikament.getMenge() == 0) {
             medikamente.erase(medikamente.begin()+i);
             break;
         }
