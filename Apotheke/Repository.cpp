@@ -5,7 +5,6 @@ using namespace std;
 void Repository::add_medikament(Medikament _medikament) {
     lastOperation = "add";
     lastMedicament = _medikament;
-//    lastAndNew.insert(lastAndNew.begin(), _medikament);
     bool found = false;
     for (std::size_t i = 0; i < medikamente.size(); ++i)
         if (medikamente[i] == _medikament) {   // Wenn dieses Medikament schon existiert, dann wird nur die Menge vergrossert
@@ -20,13 +19,12 @@ void Repository::add_medikament(Medikament _medikament) {
 void Repository::delete_medikament(Medikament _medikament) {
     lastOperation = "delete";
     lastMedicament = _medikament;
-//    lastAndNew.insert(lastAndNew.begin(), _medikament);
     for(int i = 0; i < medikamente.size(); ++i) {
         if (medikamente[i] == _medikament && _medikament.getMenge() == 1 || medikamente[i].getMenge() - _medikament.getMenge() == 0) {
-            medikamente.erase(medikamente.begin()+i);
+            medikamente.erase(medikamente.begin()+i);       //If the medicine exists and has only 1 ammount, then it erases the medicine from the vector completely
             break;
         }
-        else{
+        else{        //if the medicine has more than 1 amount, then it removes by amount
             medikamente[i].setMenge(medikamente[i].getMenge() - _medikament.getMenge());
             break;
         }
@@ -38,7 +36,7 @@ void Repository::edit_medikament(Medikament _medikament, Medikament newMedikamen
     lastMedicament = _medikament;
     newMedicament = newMedikament;
     for (std::size_t i = 0; i < medikamente.size(); ++i)
-        if (medikamente[i] == _medikament) {
+        if (medikamente[i] == _medikament) {               //If the medicine exists, edits it components
             medikamente[i].setName(newMedikament.getName());
             medikamente[i].setKonzentration(newMedikament.getKonzentration());
             medikamente[i].setMenge(newMedikament.getMenge());
@@ -47,17 +45,17 @@ void Repository::edit_medikament(Medikament _medikament, Medikament newMedikamen
 }
 
 void Repository::undo(){
-    if(lastOperation == "add"){
+    if(lastOperation == "add"){     // if the last operation was "add", it deteles the added medicine
         delete_medikament(lastMedicament);
         lastOperation = "";
         lastUndo = "delete";
     }
-    if(lastOperation == "delete") {
+    if(lastOperation == "delete") {     // if the last operation was "delete", it adds the deleted medicine
         add_medikament(lastMedicament);
         lastOperation = "";
         lastUndo = "add";
     }
-    if(lastOperation == "edit"){
+    if(lastOperation == "edit"){        //if the last operation was "edit", it edits the medicine to the one before there was any changes
         edit_medikament(newMedicament,lastMedicament );
         lastOperation = "";
         lastUndo = "edit";
@@ -65,17 +63,17 @@ void Repository::undo(){
 }
 
 void Repository::redo(){
-    if(lastUndo == "add"){
+    if(lastUndo == "add"){      //if the undo operation was "add", it deletes the added medicine
         delete_medikament(lastMedicament);
         lastOperation = "";
         lastUndo = "";
     }
-    if(lastUndo == "delete") {
+    if(lastUndo == "delete") {      //if the undo operation was "delete", it adds the deleted medicine
         add_medikament(lastMedicament);
         lastOperation = "";
         lastUndo = "";
     }
-    if(lastUndo == "edit"){
+    if(lastUndo == "edit"){     //if the undo operation was "edit", it edits the edits the medicine to the one before the undo operation
         edit_medikament(newMedicament,lastMedicament );
         lastOperation = "";
         lastUndo = "";
