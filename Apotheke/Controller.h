@@ -4,9 +4,12 @@
 
 
 class Controller {
-private:
+public:
 	Repository repo;
 public:
+	// Default constructor
+	Controller();
+
 	// Constructor
 	Controller(Repository repo);
 
@@ -21,5 +24,4 @@ public:
 
 	// Shows the list with medications grouped by price
 	void groupPrice();
-
 };

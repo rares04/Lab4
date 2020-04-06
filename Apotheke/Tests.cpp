@@ -168,7 +168,7 @@ void Tests::testGroupPrice() const {
 }
 
 
-int main() {
+void Tests::allTests() const {
     Tests t;
     t.testAdd();
     t.testDelete();

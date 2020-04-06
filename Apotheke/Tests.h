@@ -24,4 +24,5 @@ public:
     void testKnapp() const;
     void testStrFind() const;
     void testGroupPrice() const;
+    void allTests() const;
 };

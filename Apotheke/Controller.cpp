@@ -5,8 +5,14 @@
 using namespace std;
 
 
-Controller::Controller(Repository _repo) {
+Controller::Controller() {
+	Repository _repo;
 	this->repo = _repo;
+}
+
+
+Controller::Controller(Repository _repo) : repo(_repo) {
+
 }
 
 
